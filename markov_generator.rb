@@ -13,18 +13,7 @@ class MarkovGenerator
     freq_hash = Hash.new {|hash, key| hash[key] = [] }
 
     text.split.each_cons(2) do |word, following_word|
-      if word.end_with?('.')
-        word == word.end_with?('.')
-        freq_hash[word] << following_word
-      elsif word.end_with?(',')
-        word == word.end_with?(',')
-        freq_hash[word] << following_word
-      elsif word == word.end_with?('.')
-        word == word.end_with?('.')
-        freq_hash[word] << following_word
-      else
-        freq_hash[word] << following_word
-      end
+      freq_hash[word] << following_word
     end
 
 
@@ -32,18 +21,32 @@ class MarkovGenerator
     pp freq_hash
     current_word = freq_hash.keys.sample
     sentence = [current_word]
+    # last_word = ''
 
     12.times do
       p current_word
       current_word = freq_hash[current_word].sample
+
       sentence << current_word
     end
 
+    # add logic for handling punctuation here?
+    # separate punctuation from words
     sentence.join(" ")
   end
 end
 
 # Treat sentence-ending punctuation (ie, ., ?, and !) as words themselves.
 # if word[-1] == '.' || '?' || '!'
+
 # use scan?
 # end_with?
+# How to handle words that end with punctuation?
+  # do not want sentences to end with ','
+  # words that end with '?' or '.' need to be at end of sentence
+
+# if word.split(//).each contains '?' or '.'
+  # treat '?' or '.' as separate word
+  # add at end of sentence
+
+# capitalize all sentences.
