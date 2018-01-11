@@ -5,8 +5,8 @@
 
 
 class MarkovGenerator
-  def self.from_file file
-    from_text File.read(file)
+  def self.from_file(file)
+    from_text(File.read(file))
   end
 
   def self.from_text text
