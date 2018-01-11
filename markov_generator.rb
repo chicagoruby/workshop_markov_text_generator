@@ -13,7 +13,18 @@ class MarkovGenerator
     freq_hash = Hash.new {|hash, key| hash[key] = [] }
 
     text.split.each_cons(2) do |word, following_word|
-      freq_hash[word] << following_word
+      if word.end_with?('.')
+        word == word.end_with?('.')
+        freq_hash[word] << following_word
+      elsif word.end_with?(',')
+        word == word.end_with?(',')
+        freq_hash[word] << following_word
+      elsif word == word.end_with?('.')
+        word == word.end_with?('.')
+        freq_hash[word] << following_word
+      else
+        freq_hash[word] << following_word
+      end
     end
 
 
@@ -31,3 +42,8 @@ class MarkovGenerator
     sentence.join(" ")
   end
 end
+
+# Treat sentence-ending punctuation (ie, ., ?, and !) as words themselves.
+# if word[-1] == '.' || '?' || '!'
+# use scan?
+# end_with?
